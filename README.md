@@ -3,7 +3,7 @@
 Pattern matching for the **instanceof** operator, finalized in Java 16 (JEP 394) and fully available in Java 17, 
 streamlines code by combining a type check with the declaration of a pattern variable. </br>
 
-Before pattern matching, you had to explicitly check the type and then cast the object to use its specific methods: </br>
+**Before pattern matching**, you had to explicitly check the type and then cast the object to use its specific methods: </br>
 public static void traditionalCheck(Object obj) { </br>
       if (obj instanceof String) { </br>
    &emsp;     String s = (String) obj; // Explicit cast required </br>
@@ -11,7 +11,7 @@ public static void traditionalCheck(Object obj) { </br>
 &emsp;    } </br>
 }  </br>
 
-Pattern Matching Approach (Java 17) </br>
+**Pattern Matching Approach (Java 17)** </br>
 With pattern matching, a pattern variable is automatically created and assigned if the instanceof check is successful.  </br>
 The variable is safely scoped to the block where the check is true. </br>
 public static void patternMatchCheck(Object obj) { </br>
