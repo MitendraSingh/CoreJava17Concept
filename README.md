@@ -93,6 +93,7 @@ String result = switch (obj) { </br>
 &emsp;    case String s -> "It is a string"; </br>
 &emsp;    default -> "It is none of the known data types"; </br>
 }; </br>
+**Above example is possible only in case of using java 21**
 
 
 trick question can default be skipped ? </br>
