@@ -105,3 +105,118 @@ case "first" -> system.out.println("first"); </br>
 case "second" -> system.out.println("second"); </br>
 } </br>
 
+# var variable in java 17
+
+introduce in java 10 but continue as it in java 17 </br>
+**var** lets the compiler infer the type of a local variable at compile time. </br>
+
+1️⃣ **Basic Example**  </br>
+var name = "Spring"; </br>
+var count = 10; </br>
+var list = List.of("A", "B"); </br>
+
+
+**Compiler infers:** </br>
+String </br>
+int    </br>
+List<String> </br>
+
+2️⃣  **Where var is ALLOWED**  </br>
+✔ **Local variables**   </br>
+&emsp;	var x = 10;   </br>
+
+✔ **Loop variables**  </br>
+&emsp;	for (var i = 0; i < 5; i++) { }  </br>
+	
+✔ **Enhanced for-loop** </br>
+&emsp;	for (var item : list) { }  </br>
+
+✔ **Try-with-resources**  </br>
+&emsp;	try (var br = new BufferedReader(new FileReader("a.txt"))) {  </br>
+&emsp;	} </br>
+
+3️⃣ **Where var is NOT ALLOWED (Very Tricky ❌)** </br>
+
+❌ **Fields** </br>
+	class A { </br>
+ &emsp;   var x = 10;   // ❌ compile error </br>
+} </br>
+
+❌ **Method parameters** </br>
+&emsp;	void test(var x) { }   // ❌ </br>
+
+❌ **Return types**  </br>
+&emsp;	var x;   // ❌ compile-time error  </br>
+
+✔ **Correct:**  </br>
+&emsp;	var x = 10;  </br>
+
+5️⃣ **var with null (Common Trap ❌)**  </br>
+&emsp;	var x = null;   // ❌ compiler error  </br>
+	
+	**Why?
+	Compiler cannot infer type from null.** </br>
+	
+6️⃣ **var Does NOT Mean Dynamic Typing** ❌ </br>
+&emsp;	var x = 10; </br>
+&emsp;	x = "Hello";   // ❌ compile-time error </br>
+&emsp;	var is static typing, not dynamic. </br>
+	
+7️⃣ **var with Generics (Hidden Complexity ⚠️)**  </br>
+&emsp;	var list = new ArrayList<String>();  </br>
+&emsp;	✔ **Inferred type:** ArrayList<String>   </br>
+	
+	But 
+&emsp;	var list = List.of("A", "B");  </br>
+&emsp;	✔ **Inferred type:** List<String> (immutable)  </br>
+	
+8️⃣ **var with Lambdas (Java 11+ Feature ⭐)**   </br>
+	&emsp;	(var x) -> x.toUpperCase();   </br>
+		✔ **Useful when:** </br>
+	&emsp;		Adding annotations </br>
+	&emsp;		Consistency in lambda parameters </br>
+
+9️⃣ **Readability Rule (Interview Favorite)** </br>
+❌ **Bad:**	  </br>
+&emsp; var x = foo(); </br>
+
+✔ **Good:** </br>
+&emsp; var orderList = orderService.getOrders(); </br>
+&emsp; Use var only when the inferred type is obvious. </br>
+
+🔟 **Performance Impact?**
+
+❌ No runtime impact </br>
+✔ Compile-time only feature </br>
+
+| Question                              | Answer                    | </br>
+| ------------------------------------- | ------------------------- | </br>
+| Is `var` a keyword?                   | ❌ No (reserved type name) | </br>
+| Runtime overhead?                     | ❌ None                    | </br>
+| Can `var` be used in fields?          | ❌                         | </br>
+| Can `var` hold different types later? | ❌                         | </br>
+| Is `var` similar to JavaScript?       | ❌                         |  </br>
+
+		
+
+
+
+# Try-With-Resources (Very Important ⭐) 
+&emsp; try (var br = new BufferedReader(new FileReader("a.txt"))) {  </br>
+&emsp; &emsp;    System.out.println(br.readLine()); </br>
+&emsp; } </br>
+✔ **Uses var (Java 10+)** </br>
+✔ **No finally needed** </br>
+✔ **close() called automatically** </br>
+
+**Try-With-Resources (Multiple Resources)** </br>
+
+try ( </br>
+ &emsp;   var in = new FileInputStream("a.txt"); </br>
+&emsp;    var out = new FileOutputStream("b.txt") </br>
+) { </br>
+&emsp;    // use resources </br>
+} </br>
+
+Resources close in reverse order. </br>
+
