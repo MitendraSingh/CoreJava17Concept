@@ -189,18 +189,16 @@ List<String> </br>
 
 ❌ No runtime impact </br>
 ✔ Compile-time only feature </br>
+```
+| Question                              | Answer                    |
+| ------------------------------------- | ------------------------- |
+| Is `var` a keyword?                   | ❌ No (reserved type name) |
+| Runtime overhead?                     | ❌ None                    |
+| Can `var` be used in fields?          | ❌                         |
+| Can `var` hold different types later? | ❌                         |
+| Is `var` similar to JavaScript?       | ❌                         |
 
-| Question &emsp;&emsp;&emsp; &emsp;&emsp;&emsp; &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;                            | Answer &emsp;&emsp;&emsp; &emsp;&emsp;&emsp;  &emsp;&emsp;                | </br>
-| ------------------------------------------- | ------------------------------- | </br>
-| Is `var` a keyword? &emsp;&emsp;&emsp; &emsp;&emsp;&emsp; &emsp;&emsp;                  | ❌ No (reserved type name) | </br>
-| Runtime overhead?  &emsp;&emsp;&emsp; &emsp;&emsp;&emsp;&emsp;&emsp;                  | ❌ None &emsp;&emsp;&emsp; &emsp;&emsp;&emsp;&emsp;&emsp;                    | </br>
-| Can `var` be used in fields?  &emsp;&emsp;&emsp; &emsp;&emsp;       | ❌ &emsp;&emsp;&emsp; &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;                         | </br>
-| Can `var` hold different types later? &emsp; | ❌ &emsp;&emsp;&emsp; &emsp;&emsp;&emsp;  &emsp;&emsp;&emsp;  &emsp;&emsp;                        | </br>
-| Is `var` similar to JavaScript?   &emsp;&emsp;&emsp;&emsp;    | ❌  &emsp;&emsp;&emsp; &emsp;&emsp;&emsp;  &emsp;&emsp;&emsp;  &emsp;&emsp;                    |  </br>
-
-		
-
-
+```
 
 # Try-With-Resources (Very Important ⭐) 
 
