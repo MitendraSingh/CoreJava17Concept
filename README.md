@@ -282,5 +282,107 @@ catch (Exception e) {
 }
 ```
 
+🔥  **Code Output Question (Very Common)**
+```
+class TestResource implements AutoCloseable {
+    public void close() {
+        System.out.println("Closed");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        try (TestResource r = new TestResource()) {
+            System.out.println("Inside try");
+        }
+    }
+}
+```
+**Output :**
+👉 ✅ Answer:
+```
+Inside try
+Closed
+```
+
+🔥  **Tricky: Exception + Close**
+```
+class TestResource implements AutoCloseable {
+    public void close() {
+        throw new RuntimeException("Close Exception");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        try (TestResource r = new TestResource()) {
+            throw new RuntimeException("Try Exception");
+        }
+    }
+}
+```
+❓ **Which exception is thrown?**
+
+👉 ✅ **Answer**:
+
+"Try Exception" is thrown
+"Close Exception" is suppressed
+
+❓ **How to access suppressed exception?**
+```
+catch (Exception e) {
+    for (Throwable t : e.getSuppressed()) {
+        System.out.println(t);
+    }
+}
+```
+
+🔥 **Multiple Resources Order (Very Important)**
+
+```
+class A implements AutoCloseable {
+    public void close() { System.out.println("A closed"); }
+}
+
+class B implements AutoCloseable {
+    public void close() { System.out.println("B closed"); }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        try (A a = new A(); B b = new B()) {
+            System.out.println("Inside");
+        }
+    }
+}
+```
+❓ **Output?**
+
+👉 ✅ Answer:
+
+```
+Inside
+B closed
+A closed
+```
+
+👉 **Resources close in reverse order (LIFO)**
+
+
+🔥 ** Interface Difference (Very Common)**
+❓** Difference between AutoCloseable and Closeable?**
+```
+| Feature   | AutoCloseable    | Closeable          |
+| --------- | ---------------- | ------------------ |
+| Package   | java.lang        | java.io            |
+| Exception | throws Exception | throws IOException |
+| Usage     | General          | IO-specific        |
+
+```
+
+
+
+
+
 
 
