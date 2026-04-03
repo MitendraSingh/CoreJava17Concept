@@ -366,11 +366,11 @@ B closed
 A closed
 ```
 
-👉 **Resources close in reverse order (LIFO)**
+👉 **Resources close in reverse order (LIFO)** </br>
 
 
-🔥 ** Interface Difference (Very Common)**
-❓** Difference between AutoCloseable and Closeable?**
+🔥 ** Interface Difference (Very Common)** </br>
+❓** Difference between AutoCloseable and Closeable?** </br>
 ```
 | Feature   | AutoCloseable    | Closeable          |
 | --------- | ---------------- | ------------------ |
