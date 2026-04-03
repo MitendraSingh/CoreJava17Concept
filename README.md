@@ -203,21 +203,84 @@ List<String> </br>
 
 
 # Try-With-Resources (Very Important ⭐) 
-&emsp; try (var br = new BufferedReader(new FileReader("a.txt"))) {  </br>
-&emsp; &emsp;    System.out.println(br.readLine()); </br>
-&emsp; } </br>
-✔ **Uses var (Java 10+)** </br>
-✔ **No finally needed** </br>
-✔ **close() called automatically** </br>
 
-**Try-With-Resources (Multiple Resources)** </br>
+**Try-with-resources** is a feature introduced in Java 7 and still widely used in Java 17 to **automatically close resources** (like files, streams, DB connections) after use.
+```
+try (ResourceType resource = new ResourceType()) {
+    // use resource
+} catch (Exception e) {
+    // handle exception
+}
+```
 
-try ( </br>
- &emsp;   var in = new FileInputStream("a.txt"); </br>
-&emsp;    var out = new FileOutputStream("b.txt") </br>
-) { </br>
-&emsp;    // use resources </br>
-} </br>
+👉 **Any object used here must implement AutoCloseable (or Closeable).**
 
-Resources close in reverse order. </br>
+🔹 **Example 1: Reading a File**
+```
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
+public class Example {
+    public static void main(String[] args) {
+        try (BufferedReader br = new BufferedReader(new FileReader("test.txt"))) {
+            System.out.println(br.readLine());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
+```
+✅ No need to manually close BufferedReader </br>
+✅ It is automatically closed after the try block </br>
+
+**Example 2: Multiple Resources**
+```
+try (
+    BufferedReader br = new BufferedReader(new FileReader("input.txt"));
+    FileReader fr = new FileReader("input.txt")
+) {
+    System.out.println(br.readLine());
+}
+```
+👉 Resources are closed in reverse order (LIFO).
+
+
+🔹**Custom Resource Example**
+```
+class MyResource implements AutoCloseable {
+    public void doWork() {
+        System.out.println("Working...");
+    }
+
+    @Override
+    public void close() {
+        System.out.println("Resource closed");
+    }
+}
+
+public class Test {
+    public static void main(String[] args) {
+        try (MyResource res = new MyResource()) {
+            res.doWork();
+        }
+    }
+}
+```
+🔹 **Suppressed Exceptions (Interview Favorite ⭐)**
+
+If both: </br>
+
+try block throws exception </br>
+close() also throws exception </br>
+
+👉 **The exception from close() is suppressed**
+
+```
+catch (Exception e) {
+    Throwable[] suppressed = e.getSuppressed();
+}
+```
+
+
 
